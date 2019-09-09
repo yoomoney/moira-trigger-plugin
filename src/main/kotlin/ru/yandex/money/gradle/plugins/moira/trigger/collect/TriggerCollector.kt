@@ -1,5 +1,6 @@
 package ru.yandex.money.gradle.plugins.moira.trigger.collect
 
+import org.gradle.api.logging.Logging
 import org.jetbrains.kotlin.script.jsr223.KotlinJsr223JvmLocalScriptEngine
 import org.json.JSONArray
 import org.json.JSONObject
@@ -33,6 +34,10 @@ class TriggerCollector(classPathFiles: Collection<File>) : FilesCollector<List<T
         val script = String(Files.readAllBytes(file.toPath()), Charsets.UTF_8)
         val json = kotlinEngine.eval(script) as String
 
+        if (json.isEmpty()) {
+            log.lifecycle("Output of script is empty, script={}", file)
+        }
+
         val tokener = JSONTokener(json)
         val value = tokener.nextValue()
 
@@ -41,5 +46,10 @@ class TriggerCollector(classPathFiles: Collection<File>) : FilesCollector<List<T
             is JSONObject -> listOf(Trigger(value))
             else -> throw RuntimeException("Unknown trigger generating result: $value")
         }
+    }
+
+    companion object {
+
+        private val log = Logging.getLogger(TriggerCollector::class.java)
     }
 }

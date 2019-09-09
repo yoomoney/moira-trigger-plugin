@@ -83,15 +83,19 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
             moira {
                 url = 'http://localhost:$moiraPort'
             }
-
-            dependencies {
-                moiraCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0-feature-moira-dsl-SNAPSHOT'
-            }
         """.trimIndent())
     }
 
     @Test
     fun `should create triggers`() {
+        buildFile.appendText("""
+
+            dependencies {
+                moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+            }
+
+        """.trimIndent())
+
         val result = runTasksSuccessfully("uploadMoiraTriggers", "--stacktrace", "--info")
 
         Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":uploadMoiraTriggers")?.outcome)
@@ -99,10 +103,59 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
     }
 
     @Test
+    fun `should create common triggers`() {
+        buildFile.appendText("""
+
+            dependencies {
+                moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0',
+                    'com.natpryce:konfig:1.6.10.0'
+                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0-feature-BACKEND-2942-SNAPSHOT'
+            }
+
+        """.trimIndent())
+
+        val result = runTasksSuccessfully("uploadMoiraTriggers", "--stacktrace", "--info")
+
+        Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":uploadMoiraTriggers")?.outcome)
+        Assert.assertTrue(result.output.contains("Trigger (id=test) has been created successfully"))
+        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsTriggers.kts")))
+    }
+
+    @Test
     fun `should just prints triggers`() {
+        buildFile.appendText("""
+
+            dependencies {
+                moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+            }
+
+        """.trimIndent())
+
         val result = runTasksSuccessfully("collectMoiraTriggers", "--stacktrace", "--info")
 
         Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":collectMoiraTriggers")?.outcome)
         Assert.assertTrue(result.output.contains("Collected trigger (File: [trigger.kts] Trigger: [Test trigger])"))
+        Assert.assertTrue(result.output.contains(Regex("Directory.*moira does not exist. Skip.")))
+    }
+
+    @Test
+    fun `should prints common triggers`() {
+        buildFile.appendText("""
+
+            dependencies {
+                moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0',
+                    'com.natpryce:konfig:1.6.10.0'
+                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0-feature-BACKEND-2942-SNAPSHOT'
+            }
+
+        """.trimIndent())
+
+        val result = runTasksSuccessfully("collectMoiraTriggers", "--stacktrace", "--info")
+
+        Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":collectMoiraTriggers")?.outcome)
+        Assert.assertTrue(result.output.contains("Collected trigger (File: [trigger.kts] Trigger: [Test trigger])"))
+        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsTriggers.kts")))
     }
 }
