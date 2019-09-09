@@ -25,20 +25,18 @@ open class UploadMoiraTriggersTask : DefaultTask() {
     lateinit var artifactConfiguration: Configuration
     lateinit var extension: MoiraTriggerExtension
 
-    private lateinit var uploader: MoiraUploader
-
     @TaskAction
     internal fun uploadMoiraTriggers() {
-        uploader = MoiraUploader(url = extension.url!!, login = extension.login, password = extension.password)
+        val uploader = MoiraUploader(url = extension.url!!, login = extension.login, password = extension.password)
 
         val targetDir = Paths.get(project.projectDir.toString(), extension.dir).toFile()
-        targetDir.uploadTriggers(dirConfiguration)
+        targetDir.uploadTriggers(dirConfiguration, uploader)
 
         val targetDirArtifact = Paths.get(project.buildDir.toString(), TRIGGERS_FROM_ARTIFACT_DIR).toFile()
-        targetDirArtifact.uploadTriggers(artifactConfiguration)
+        targetDirArtifact.uploadTriggers(artifactConfiguration, uploader)
     }
 
-    private fun File.uploadTriggers(configuration: Configuration) {
+    private fun File.uploadTriggers(configuration: Configuration, uploader: MoiraUploader) {
         if (!this.exists()) {
             log.lifecycle("Directory ${this.absolutePath} does not exist. Skip.")
             return
