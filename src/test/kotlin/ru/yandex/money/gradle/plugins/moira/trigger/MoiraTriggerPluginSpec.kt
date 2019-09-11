@@ -108,9 +108,8 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
 
             dependencies {
                 moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
-                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0',
-                    'com.natpryce:konfig:1.6.10.0'
-                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0-feature-BACKEND-2942-SNAPSHOT'
+                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0'
             }
 
         """.trimIndent())
@@ -119,7 +118,7 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
 
         Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":uploadMoiraTriggers")?.outcome)
         Assert.assertTrue(result.output.contains("Trigger (id=test) has been created successfully"))
-        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsTriggers.kts")))
+        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsLogsTriggers.kts")))
     }
 
     @Test
@@ -145,9 +144,8 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
 
             dependencies {
                 moiraFromDirCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
-                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0',
-                    'com.natpryce:konfig:1.6.10.0'
-                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0-feature-BACKEND-2942-SNAPSHOT'
+                moiraFromArtifactCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+                moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0'
             }
 
         """.trimIndent())
@@ -156,6 +154,6 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
 
         Assert.assertEquals(TaskOutcome.SUCCESS, result.task(":collectMoiraTriggers")?.outcome)
         Assert.assertTrue(result.output.contains("Collected trigger (File: [trigger.kts] Trigger: [Test trigger])"))
-        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsTriggers.kts")))
+        Assert.assertTrue(result.output.contains(Regex("Output of script is empty.*moira/AnomalyErrorsLogsTriggers.kts")))
     }
 }

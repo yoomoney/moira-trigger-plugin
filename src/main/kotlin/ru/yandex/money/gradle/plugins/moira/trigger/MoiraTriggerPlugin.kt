@@ -28,6 +28,7 @@ open class MoiraTriggerPlugin : Plugin<Project> {
                 .maybeCreate("${ARTIFACT_TRIGGERS_CONFIGURATION_NAME}Compile")
 
         target.afterEvaluate { project ->
+            artifactConfiguration.extendsFrom(triggersConfiguration)
             project.createUploadMoiraTriggersTask(dirConfiguration, artifactConfiguration, extension)
             project.createCollectMoiraTriggersTask(dirConfiguration, artifactConfiguration, extension)
             project.createExtractTriggersTask(triggersConfiguration)
