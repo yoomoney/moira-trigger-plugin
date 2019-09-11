@@ -24,7 +24,6 @@ abstract class AbstractPluginSpec {
             }
 
             repositories {
-                maven { url 'https://nexus.yamoney.ru/repository/snapshots/' }
                 maven { url 'https://nexus.yamoney.ru/repository/thirdparty/' }
                 maven { url 'https://nexus.yamoney.ru/repository/central/' }
                 maven { url 'https://nexus.yamoney.ru/repository/releases/' }
