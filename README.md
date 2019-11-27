@@ -13,7 +13,7 @@
 
 ```groovy
 plugins {
-    id 'yamoney-moira-trigger-plugin'
+    id 'com.yandex.money.tech.moira-trigger-plugin'
 }
 
 moira {
@@ -45,24 +45,18 @@ moira {
 1. Подключите `yamoney-moira-trigger-plugin`:
    ```groovy
    plugins {
-       id 'yamoney-moira-trigger-plugin'
+       id 'com.yandex.money.tech.moira-trigger-plugin'
    }
 
    moira {
-       url = 'https://moira.yamoney.ru/api'
+       url = 'http://your-moira-host.com/api'
    }
    ```
-1. Добавьте зависимости, содержащие необходимые файлы с описанием триггеров (расширение `.kts`)
+1. Добавьте в качестве зависимости `moira-kotlin-dsl` отдельно для триггеров из проекта и из подключенного артифакта :
    ```groovy
    dependencies {
-       moiraTriggersCompile 'ru.yandex.money.common:yamoney-moira-triggers:1.0.0'
-   }  
-   ```
-1. Добавьте в качестве зависимости `yamoney-moira-dsl` отдельно для триггеров из проекта и из подключенного артифакта :
-   ```groovy
-   dependencies {
-       moiraFromDirCompile 'ru.yandex.money.common:yamoney-moira-dsl:1.0.0'
-       moiraFromArtifactCompile 'ru.yandex.money.common:yamoney-moira-dsl:1.0.0'
+       moiraFromDirCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
+       moiraFromArtifactCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
    }  
    ```
 1. Добавьте в директорию `$projectDir/moira` описание триггера с использованием DSL (файл с расширением `.kts`).
