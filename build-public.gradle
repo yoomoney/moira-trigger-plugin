@@ -1,11 +1,16 @@
 buildscript {
     repositories {
         jcenter()
+        dependencies {
+            classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.61'
+        }
     }
 }
 
 plugins {
     id "com.jfrog.bintray" version "1.8.4"
+    id "com.gradle.plugin-publish" version "0.10.0"
+    id "java-gradle-plugin"
 }
 
 repositories {
@@ -23,15 +28,28 @@ task wrapper(type: Wrapper) {
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
+apply plugin: 'kotlin'
 apply from: 'dependencies.gradle'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.61"
+    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.61"
+
+    compile "com.yandex.money.tech:moira-kotlin-client:${project.moiraClientVersion}"
+    testCompile "com.yandex.money.tech:moira-kotlin-dsl:${project.moiraDslVersion}"
+}
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
-sourceCompatibility = '8'
-targetCompatibility = '8'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
-compileJava {
-    options.compilerArgs.addAll(['--release', '8'])
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 jar {
@@ -54,6 +72,11 @@ jar {
 
 apply plugin: 'idea'
 idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+        vcs = 'Git'
+    }
     module {
         downloadJavadoc = true
         downloadSources = true
@@ -83,7 +106,6 @@ jacocoTestReport {
 check.dependsOn jacocoTestReport
 
 javadoc {
-    exclude "**/internal/**"
     options {
         docEncoding = 'UTF-8'
         charSet = 'UTF-8'
@@ -91,7 +113,6 @@ javadoc {
         failOnError = true
     }
 }
-
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -106,6 +127,25 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar, javadocJar
 }
+
+gradlePlugin {
+    plugins {
+        moiraTriggerPlugin {
+            id = 'com.yandex.money.tech.moira-trigger-plugin'
+            implementationClass = 'ru.yandex.money.gradle.plugins.moira.trigger.MoiraTriggerPlugin'
+            displayName = 'Moira Trigger Publication Plugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/yandex-money-tech/moira-trigger-plugin'
+    vcsUrl = 'https://github.com/yandex-money-tech/moira-trigger-plugin.git'
+    description = 'Gradle plugin for Moira triggers publication'
+    tags = ['alerting', 'moira', 'gradle', 'plugin', 'kotlin', 'dsl']
+}
+
+publishPlugins.onlyIf { !project.version.endsWith("-SNAPSHOT") }
 
 publishing {
     publications {
@@ -133,7 +173,7 @@ bintray {
         name = 'moira-trigger-plugin'
         repo = 'maven'
         userOrg = 'yandex-money-tech'
-        desc = 'Kotlin DSL for creating Moira triggers'
+        desc = 'Gradle plugin for Moira triggers publication'
         websiteUrl = 'https://github.com/yandex-money-tech/moira-trigger-plugin'
         issueTrackerUrl = 'https://github.com/yandex-money-tech/moira-trigger-plugin/issues'
         vcsUrl = 'https://github.com/yandex-money-tech/moira-trigger-plugin.git'
