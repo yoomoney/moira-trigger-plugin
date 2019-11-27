@@ -106,10 +106,10 @@ class DirectoryCollectorSpec {
             setOf(
                 "file1.supported",
                 "file2.supported",
-                "dir1/file1.supported",
-                "dir1/file2.supported",
-                "dir2/file1.supported",
-                "dir2/file2.supported"
+                "dir1${File.separator}file1.supported",
+                "dir1${File.separator}file2.supported",
+                "dir2${File.separator}file1.supported",
+                "dir2${File.separator}file2.supported"
             ),
             collected.toSet()
         )
@@ -130,19 +130,19 @@ class DirectoryCollectorSpec {
                 "file1.supported",
                 "file2.supported",
 
-                "dir1/file1.supported",
-                "dir1/file2.supported",
-                "dir1/lvl1/file1.supported",
-                "dir1/lvl1/file2.supported",
-                "dir1/lvl2/file1.supported",
-                "dir1/lvl2/file2.supported",
+                "dir1${File.separator}file1.supported",
+                "dir1${File.separator}file2.supported",
+                "dir1${File.separator}lvl1${File.separator}file1.supported",
+                "dir1${File.separator}lvl1${File.separator}file2.supported",
+                "dir1${File.separator}lvl2${File.separator}file1.supported",
+                "dir1${File.separator}lvl2${File.separator}file2.supported",
 
-                "dir2/file1.supported",
-                "dir2/file2.supported",
-                "dir2/lvl1/file1.supported",
-                "dir2/lvl1/file2.supported",
-                "dir2/lvl2/file1.supported",
-                "dir2/lvl2/file2.supported"
+                "dir2${File.separator}file1.supported",
+                "dir2${File.separator}file2.supported",
+                "dir2${File.separator}lvl1${File.separator}file1.supported",
+                "dir2${File.separator}lvl1${File.separator}file2.supported",
+                "dir2${File.separator}lvl2${File.separator}file1.supported",
+                "dir2${File.separator}lvl2${File.separator}file2.supported"
             ),
             collected.toSet()
         )

@@ -7,7 +7,7 @@ import org.junit.Rule
 import org.junit.rules.TemporaryFolder
 import java.io.File
 
-abstract class AbstractPluginSpec {
+abstract class AbstractPluginSpec(private val pluginId: String) {
 
     @get:Rule
     val projectDir = TemporaryFolder()
@@ -20,20 +20,17 @@ abstract class AbstractPluginSpec {
 
         buildFile.writeText("""
             plugins {
-                id 'yamoney-moira-trigger-plugin'
+                id '$pluginId'
             }
 
-            repositories {
-                maven { url 'https://nexus.yamoney.ru/repository/thirdparty/' }
-                maven { url 'https://nexus.yamoney.ru/repository/central/' }
-                maven { url 'https://nexus.yamoney.ru/repository/releases/' }
-                maven { url 'https://nexus.yamoney.ru/repository/jcenter.bintray.com/' }
-            }
+            ${repositories()}
 
         """.trimIndent())
 
         println("Work directory: ${projectDir.root.absolutePath}")
     }
+
+    protected abstract fun repositories(): String
 
     fun runTasksSuccessfully(vararg tasks: String): BuildResult = GradleRunner.create()
         .withProjectDir(projectDir.root)

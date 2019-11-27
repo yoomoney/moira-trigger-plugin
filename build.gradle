@@ -14,17 +14,13 @@ gradlePlugin {
     }
 }
 
+apply from: 'dependencies.gradle'
+
 dependencies {
-    compile 'org.json:json:20180130',
-            'org.jetbrains.kotlin:kotlin-compiler-embeddable',
-            'org.jetbrains.kotlin:kotlin-script-util'
+    compile "ru.yandex.money.tools:yamoney-moira-kotlin-client:${project.moiraClientVersion}"
+    testCompile "ru.yandex.money.tools:yamoney-moira-kotlin-dsl:${project.moiraDslVersion}"
+}
 
-    compile 'ru.yandex.money.tools:yamoney-moira-client:1.0.0'
-
-    testCompile gradleTestKit(),
-            'junit:junit:4.12',
-            'org.eclipse.jetty:jetty-webapp:9.4.12.v20180830',
-            'com.nhaarman:mockito-kotlin:1.5.0'
-    
-    testCompile 'ru.yandex.money.tools:yamoney-moira-dsl:1.0.0'
+tasks.withType(Test) {
+    exclude 'ru/yandex/money/gradle/plugins/moira/trigger/public/**'
 }

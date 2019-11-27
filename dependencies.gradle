@@ -1,0 +1,10 @@
+dependencies {
+    compile 'org.json:json:20180130',
+            'org.jetbrains.kotlin:kotlin-compiler-embeddable',
+            'org.jetbrains.kotlin:kotlin-script-util'
+
+    testCompile gradleTestKit(),
+            'junit:junit:4.12',
+            'org.eclipse.jetty:jetty-webapp:9.4.12.v20180830',
+            'com.nhaarman:mockito-kotlin:1.5.0'
+}

@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/yandex-money-tech/moira-trigger-plugin.svg?branch=master)](https://travis-ci.org/yandex-money-tech/moira-trigger-plugin)
+[![Build status](https://ci.appveyor.com/api/projects/status/7pigl2niap7nqwi6?svg=true)](https://ci.appveyor.com/project/f0y/moira-trigger-plugin)
+[![codecov](https://codecov.io/gh/yandex-money-tech/moira-trigger-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/yandex-money-tech/moira-trigger-plugin)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Javadoc](https://img.shields.io/badge/javadoc-latest-blue.svg)](https://yandex-money-tech.github.io/moira-trigger-plugin/)
+[![Download](https://api.bintray.com/packages/yandex-money-tech/maven/moira-trigger-plugin/images/download.svg) ](https://bintray.com/yandex-money-tech/maven/moira-trigger-plugin/_latestVersion)
+
 # Yandex.Money Moira Trigger Plugin
 
 Плагин для загрузки триггеров Moira, описанных с помощью Kotlin DSL.
