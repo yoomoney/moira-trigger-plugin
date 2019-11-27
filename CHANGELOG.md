@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [2.0.2]() (27-11-2019)
+
 * Minor fixes in README.md
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [2.0.1]() (27-11-2019)
 
 * Add support for GitHub publication
