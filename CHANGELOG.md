@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [2.0.3]() (27-11-2019)
+
 * Fix `.travis.yml` script to publish Gradle plugin
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [2.0.2]() (27-11-2019)
 
 * Minor fixes in README.md
