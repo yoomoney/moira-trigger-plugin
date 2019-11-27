@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [2.0.1]() (27-11-2019)
+
 * Add support for GitHub publication
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [2.0.0]() (11-09-2019)
 
 1. Добавлен sourceSet moiraTriggersCompile, куда можно добавлять артефакты, содержащие описания триггеров.
