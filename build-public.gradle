@@ -34,6 +34,7 @@ apply from: 'dependencies.gradle'
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.61"
     compile "org.jetbrains.kotlin:kotlin-reflect:1.2.61"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
 
     compile "com.yandex.money.tech:moira-kotlin-client:${project.moiraClientVersion}"
     testCompile "com.yandex.money.tech:moira-kotlin-dsl:${project.moiraDslVersion}"
@@ -91,6 +92,9 @@ test {
         showCauses true
         showStackTraces true
     }
+}
+tasks.withType(Test) {
+    exclude 'ru/yandex/money/gradle/plugins/moira/trigger/private/**'
 }
 
 apply plugin: "jacoco"
@@ -180,8 +184,6 @@ bintray {
         licenses = ['MIT']
         labels = ['alerting', 'moira', 'gradle-plugin']
         publicDownloadNumbers = true
-        githubRepo = 'yandex-money-tech/moira-trigger-plugin'
-        githubReleaseNotesFile = 'CHANGELOG.md'
         version {
             name = project.version
             released = new Date()

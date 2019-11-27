@@ -48,8 +48,8 @@ class MoiraTriggersCollectorSpec {
         assertEquals(
             setOf(
                 "File: [SingleTrigger.kts] Trigger: [Test trigger]",
-                "File: [recursive/TriggersList.kts] Trigger: [Test trigger 1 (succeeded)]",
-                "File: [recursive/TriggersList.kts] Trigger: [Test trigger 2 (failed)]"
+                "File: [recursive${File.separator}TriggersList.kts] Trigger: [Test trigger 1 (succeeded)]",
+                "File: [recursive${File.separator}TriggersList.kts] Trigger: [Test trigger 2 (failed)]"
             ),
             triggers.map { (name, _) -> name }.toSet()
         )

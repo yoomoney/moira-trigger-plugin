@@ -20,3 +20,7 @@ dependencies {
     compile "ru.yandex.money.tools:yamoney-moira-kotlin-client:${project.moiraClientVersion}"
     testCompile "ru.yandex.money.tools:yamoney-moira-kotlin-dsl:${project.moiraDslVersion}"
 }
+
+tasks.withType(Test) {
+    exclude 'ru/yandex/money/gradle/plugins/moira/trigger/public/**'
+}
