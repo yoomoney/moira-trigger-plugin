@@ -132,6 +132,8 @@ artifacts {
     archives sourcesJar, javadocJar
 }
 
+group = 'com.yandex.money.tech'
+
 gradlePlugin {
     plugins {
         moiraTriggerPlugin {
@@ -155,7 +157,7 @@ publishing {
     publications {
         MyPublication(MavenPublication) {
             from components.java
-            groupId 'com.yandex.money.tech'
+            groupId group
             artifactId 'moira-trigger-plugin'
             version project.version
             artifact sourcesJar
