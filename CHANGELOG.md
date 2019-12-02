@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [2.0.4]() (02-12-2019)
+
 * Fix `group` in `build-public.gradle`
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [2.0.3]() (27-11-2019)
 
 * Fix `.travis.yml` script to publish Gradle plugin
