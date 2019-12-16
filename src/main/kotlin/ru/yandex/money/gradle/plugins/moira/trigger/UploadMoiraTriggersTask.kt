@@ -3,6 +3,7 @@ package ru.yandex.money.gradle.plugins.moira.trigger
 import org.gradle.api.DefaultTask
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.logging.Logging
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import ru.yandex.money.gradle.plugins.moira.trigger.MoiraTriggerPlugin.Companion.TRIGGERS_FROM_ARTIFACT_DIR
 import ru.yandex.money.gradle.plugins.moira.trigger.collect.MoiraTriggersCollector
@@ -20,13 +21,14 @@ import java.nio.file.Paths
  * @since 17.06.2019
  */
 open class UploadMoiraTriggersTask : DefaultTask() {
-
-    lateinit var dirConfiguration: Configuration
-    lateinit var artifactConfiguration: Configuration
+    @Input
     lateinit var extension: MoiraTriggerExtension
 
     @TaskAction
     internal fun uploadMoiraTriggers() {
+        val artifactConfiguration = project.configurations.getByName("moiraFromArtifactCompile")
+        val dirConfiguration = project.configurations.getByName("moiraFromDirCompile")
+
         val uploader = MoiraUploader(url = extension.url!!, login = extension.login, password = extension.password)
 
         val targetDir = Paths.get(project.projectDir.toString(), extension.dir).toFile()

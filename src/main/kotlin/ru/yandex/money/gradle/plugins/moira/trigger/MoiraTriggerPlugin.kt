@@ -71,8 +71,6 @@ open class MoiraTriggerPlugin : Plugin<Project> {
         val task = tasks.create(UPLOAD_MOIRA_TRIGGERS_TASK_NAME, UploadMoiraTriggersTask::class.java)
         task.group = "other"
         task.description = "Upload Moira triggers"
-        task.dirConfiguration = dirConfiguration
-        task.artifactConfiguration = artifactConfiguration
         task.extension = extension
     }
 
@@ -84,8 +82,6 @@ open class MoiraTriggerPlugin : Plugin<Project> {
         val task = tasks.create(COLLECT_MOIRA_TRIGGERS_TASK_NAME, CollectMoiraTriggersTask::class.java)
         task.group = "other"
         task.description = "Collect Moira triggers without uploading"
-        task.dirConfiguration = dirConfiguration
-        task.artifactConfiguration = artifactConfiguration
         task.extension = extension
     }
 

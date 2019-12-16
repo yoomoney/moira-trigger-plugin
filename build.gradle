@@ -17,8 +17,8 @@ gradlePlugin {
 apply from: 'dependencies.gradle'
 
 dependencies {
-    compile "ru.yandex.money.tools:yamoney-moira-kotlin-client:${project.moiraClientVersion}"
-    testCompile "ru.yandex.money.tools:yamoney-moira-kotlin-dsl:${project.moiraDslVersion}"
+    implementation "ru.yandex.money.tools:yamoney-moira-kotlin-client:${project.moiraClientVersion}"
+    testImplementation "ru.yandex.money.tools:yamoney-moira-kotlin-dsl:${project.moiraDslVersion}"
 }
 
 tasks.withType(Test) {
