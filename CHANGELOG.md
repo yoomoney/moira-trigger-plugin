@@ -1,3 +1,6 @@
+### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_DESCRIPTION_BEGIN
+### NEXT_VERSION_DESCRIPTION_END
 ## [3.0.1]() (30-01-2020)
 
 * Fix gradle.wrapper distributionUrl and update kotlin version 1.2.61 -> 1.3.50.
