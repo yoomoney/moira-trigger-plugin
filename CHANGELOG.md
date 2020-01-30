@@ -1,5 +1,7 @@
-### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_TYPE=MAJOR
 ### NEXT_VERSION_DESCRIPTION_BEGIN
+* Update gradle version `4.10.2` -> `6.0.1`
+* Update dependecies version
 ### NEXT_VERSION_DESCRIPTION_END
 ## [2.0.4]() (02-12-2019)
 
