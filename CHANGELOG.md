@@ -1,8 +1,8 @@
-### NEXT_VERSION_TYPE=MAJOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [3.0.0]() (30-01-2020)
+
 * Update gradle version `4.10.2` -> `6.0.1`
 * Update dependecies version
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [2.0.4]() (02-12-2019)
 
 * Fix `group` in `build-public.gradle`
