@@ -24,3 +24,7 @@ dependencies {
 tasks.withType(Test) {
     exclude 'ru/yandex/money/gradle/plugins/moira/trigger/public/**'
 }
+
+releaseSettings {
+    addPullRequestLinkToChangelog = false
+}
