@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [3.1.1]() (28-02-2020)
+
 * Don't add bibucket pull request link into changelog.md on release
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [3.1.0]() (21-02-2020)
 
 * Сборка на java 11
