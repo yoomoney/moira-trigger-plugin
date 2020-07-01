@@ -11,12 +11,7 @@ import java.io.File
 class MoiraTriggersCollector(classPathFiles: Collection<File>) : FilesCollector<List<Pair<String, Trigger>>> {
 
     private val collector = DirectoryCollector(
-        CollectorWithFileName(
-            SafeFilesCollector(
-                TriggerCollector(classPathFiles),
-                emptyList()
-            )
-        )
+        CollectorWithFileName(TriggerCollector(classPathFiles))
     )
 
     override fun isSupported(file: File): Boolean = collector.isSupported(file)

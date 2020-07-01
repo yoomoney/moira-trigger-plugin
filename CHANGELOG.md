@@ -1,5 +1,6 @@
-### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_TYPE=PATCH
 ### NEXT_VERSION_DESCRIPTION_BEGIN
+* If trigger throws some exception, plugin shouldn`t suppress them
 ### NEXT_VERSION_DESCRIPTION_END
 ## [3.1.1]() (28-02-2020)
 
