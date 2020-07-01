@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=PATCH
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [3.1.2]() (01-07-2020)
+
 * If trigger throws some exception, plugin shouldn`t suppress them
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [3.1.1]() (28-02-2020)
 
 * Don't add bibucket pull request link into changelog.md on release
