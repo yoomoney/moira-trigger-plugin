@@ -71,4 +71,15 @@ class TriggerCollectorSpec {
         // when
         collector.collect(File(TriggerCollectorSpec::class.java.getResource("InvalidScript.kts").path))
     }
+
+    @Test
+    fun `should return empty list when trigger return empty string`() {
+        // given
+        val collector = TriggerCollector(emptyList())
+
+        // when
+        val triggers = collector.collect(File(TriggerCollectorSpec::class.java.getResource("EmptyStringTrigger.kts").path))
+
+        assertEquals(0, triggers.size)
+    }
 }

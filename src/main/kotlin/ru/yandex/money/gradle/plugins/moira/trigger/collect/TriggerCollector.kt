@@ -36,6 +36,7 @@ class TriggerCollector(classPathFiles: Collection<File>) : FilesCollector<List<T
 
         if (json.isEmpty()) {
             log.lifecycle("Output of script is empty, script={}", file)
+            return emptyList()
         }
 
         val tokener = JSONTokener(json)

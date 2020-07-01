@@ -5,6 +5,7 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
+import javax.script.ScriptException
 
 class MoiraTriggersCollectorSpec {
 
@@ -37,7 +38,7 @@ class MoiraTriggersCollectorSpec {
     @Test
     fun `should return triggers list when folder is provided`() {
         // given
-        val folder = File(MoiraTriggersCollectorSpec::class.java.getResource("test").file)
+        val folder = File(MoiraTriggersCollectorSpec::class.java.getResource("test/simple").file)
         val collector = MoiraTriggersCollector(emptyList())
 
         // when
@@ -57,5 +58,15 @@ class MoiraTriggersCollectorSpec {
             setOf("Test trigger", "Test trigger 1 (succeeded)", "Test trigger 2 (failed)"),
             triggers.map { (_, trigger) -> trigger.name }.toSet()
         )
+    }
+
+    @Test(expected = ScriptException::class)
+    fun `should throw script exception when trigger throw any exception`() {
+        // given
+        val folder = File(MoiraTriggersCollectorSpec::class.java.getResource("test/throw").file)
+        val collector = MoiraTriggersCollector(emptyList())
+
+        // when
+        collector.collect(folder)
     }
 }
