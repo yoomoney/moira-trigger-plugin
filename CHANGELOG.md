@@ -1,7 +1,7 @@
-### NEXT_VERSION_TYPE=MINOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
+## [3.2.0]() (03-07-2020)
+
 * Up gradle version: 6.0.1 -> 6.4.1.
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [3.1.2]() (01-07-2020)
 
 * If trigger throws some exception, plugin shouldn`t suppress them
