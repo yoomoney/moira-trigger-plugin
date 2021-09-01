@@ -1,29 +1,37 @@
-[![Build Status](https://travis-ci.org/yandex-money-tech/moira-trigger-plugin.svg?branch=master)](https://travis-ci.org/yandex-money-tech/moira-trigger-plugin)
-[![Build status](https://ci.appveyor.com/api/projects/status/7pigl2niap7nqwi6?svg=true)](https://ci.appveyor.com/project/f0y/moira-trigger-plugin)
-[![codecov](https://codecov.io/gh/yandex-money-tech/moira-trigger-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/yandex-money-tech/moira-trigger-plugin)
+[![Build Status](https://travis-ci.com/yoomoney/moira-trigger-plugin.svg?branch=master)](https://travis-ci.com/yoomoney/moira-trigger-plugin)
+[![codecov](https://codecov.io/gh/yoomoney/moira-trigger-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/yoomoney/moira-trigger-plugin)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Javadoc](https://img.shields.io/badge/javadoc-latest-blue.svg)](https://yandex-money-tech.github.io/moira-trigger-plugin/)
-[![Download](https://api.bintray.com/packages/yandex-money-tech/maven/moira-trigger-plugin/images/download.svg) ](https://bintray.com/yandex-money-tech/maven/moira-trigger-plugin/_latestVersion)
 
-# Yandex.Money Moira Trigger Plugin
+# moira-trigger-plugin
 
 Плагин для загрузки триггеров Moira, описанных с помощью Kotlin DSL.
 
-# Usage
+## Подключение
 
 ```groovy
-plugins {
-    id 'com.yandex.money.tech.moira-trigger-plugin'
+buildscript {
+    repositories {  
+       mavenCentral()
+    }
+    dependencies {
+        classpath 'ru.yoomoney.gradle.plugins:moira-trigger-plugin:3.+'
+    }
 }
 
+apply plugin: 'ru.yoomoney.gradle.plugins.moira-trigger-plugin'
+```
+
+## Конфигурация
+
+```groovy
 moira {
-    // URL до API Moira. 
+    // URL до API Moira.
     // Параметр обязательный.
-    url = 'http://your-moira-host.com/api'
-    
+    url = 'http://example.net/api'
+
     // Название директории, в которой хранятся скрипты с определением триггеров. 
-    // Директория резолвится относительно projectDir.
-    // Задан по-умолчанию.
+    // Директория определяется относительно projectDir.
+    // Задан по умолчанию.
     // Параметр обязательный.
     dir = 'moira' 
     
@@ -40,27 +48,16 @@ moira {
 }
 ```
 
-# Применение
+* Добавьте в качестве зависимости `moira-kotlin-dsl` отдельно для триггеров из проекта и из подключенного артефакта:
+```groovy
+dependencies {
+    moiraFromDirCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
+    moiraFromArtifactCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
+}  
+```
 
-1. Подключите `yamoney-moira-trigger-plugin`:
-   ```groovy
-   plugins {
-       id 'com.yandex.money.tech.moira-trigger-plugin'
-   }
-
-   moira {
-       url = 'http://your-moira-host.com/api'
-   }
-   ```
-1. Добавьте в качестве зависимости `moira-kotlin-dsl` отдельно для триггеров из проекта и из подключенного артифакта :
-   ```groovy
-   dependencies {
-       moiraFromDirCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
-       moiraFromArtifactCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
-   }  
-   ```
-1. Добавьте в директорию `$projectDir/moira` описание триггера с использованием DSL (файл с расширением `.kts`).
-   Например, триггер, который рассылает уведомления со статусом `ERROR`, если кол-во неуспешно обработнных входящих 
+* Добавьте в директорию `$projectDir/moira` описание триггера с использованием DSL (файл с расширением `.kts`).
+   Например, триггер, который рассылает уведомления со статусом `ERROR`, если количество неуспешно обработанных входящих 
    запросов конкретного компонента превысило 20 за последние 10 минут:
    ```kotlin
    trigger(id = "incoming_requests_error", name = "Component incoming requests error count") {
@@ -83,7 +80,7 @@ moira {
        
        // Задаем поведение в случае, если метрики нет совсем 
        ttl {
-           // Отправить ERROR уведомление, если метрика не пушилась в течении 5 минут
+           // Отправить ERROR уведомление, если метрика не пушилась в течение 5 минут
            state = TriggerState.ERROR
            ttl = Duration.ofMinutes(5)
        }
@@ -99,6 +96,10 @@ moira {
        }
    }
    ```
-1. Вызовите таску `collectMoiraTriggers` для первичной валидации триггеров (в stdout будут выведены JSON-строки для 
+
+## Задачи
+
+* Вызовите таску `collectMoiraTriggers` для первичной валидации триггеров (в stdout будут выведены JSON-строки для 
    каждого обрабатываемого триггера).
-1. Вызовите таску `uploadMoiraTriggers` для загрузки триггеров Moira.
+
+* Вызовите таску `uploadMoiraTriggers` для загрузки триггеров Moira.
