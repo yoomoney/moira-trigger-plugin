@@ -9,6 +9,6 @@ dependencies {
             'org.eclipse.jetty:jetty-webapp:9.4.12.v20180830',
             'com.nhaarman:mockito-kotlin:1.6.0'
 
-    implementation "com.yandex.money.tech:moira-kotlin-client:1.0.3"
-    testImplementation "com.yandex.money.tech:moira-kotlin-dsl:1.0.3"
+    implementation "ru.yoomoney.tech:moira-kotlin-client:1.4.1-feature-github-SNAPSHOT"
+    testImplementation "ru.yoomoney.tech:moira-kotlin-dsl:1.4.1-feature-github-SNAPSHOT"
 }

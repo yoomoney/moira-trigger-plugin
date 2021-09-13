@@ -8,10 +8,10 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import ru.yandex.money.moira.client.triggers.Trigger
-import ru.yandex.money.moira.client.triggers.TriggerType
-import ru.yandex.money.moira.client.triggers.expression.AdvancedExpression
-import ru.yandex.money.moira.client.triggers.expression.SimpleExpression
+import ru.yoomoney.tech.moira.client.triggers.Trigger
+import ru.yoomoney.tech.moira.client.triggers.TriggerType
+import ru.yoomoney.tech.moira.client.triggers.expression.AdvancedExpression
+import ru.yoomoney.tech.moira.client.triggers.expression.SimpleExpression
 import java.io.IOException
 import java.net.ServerSocket
 import java.util.UUID

@@ -57,7 +57,8 @@ abstract class AbstractPluginSpec {
             }
 
             repositories {
-                jcenter()
+                mavenCentral()
+                maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
             }
 
             moira {
@@ -71,9 +72,9 @@ abstract class AbstractPluginSpec {
 
         projectDir.newFolder("moira")
         projectDir.newFile("moira/trigger.kts").writeText("""
-            import ru.yandex.money.moira.dsl.triggers.TriggerState.ERROR
-            import ru.yandex.money.moira.dsl.triggers.TriggerState.OK
-            import ru.yandex.money.moira.dsl.triggers.trigger
+            import ru.yoomoney.tech.moira.dsl.triggers.TriggerState.ERROR
+            import ru.yoomoney.tech.moira.dsl.triggers.TriggerState.OK
+            import ru.yoomoney.tech.moira.dsl.triggers.trigger
             import java.time.Duration
 
             trigger(id = "test_trigger", name = "Test trigger") {

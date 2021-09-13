@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.script.jsr223.KotlinJsr223JvmLocalScriptEngine
 import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
-import ru.yandex.money.moira.client.triggers.Trigger
+import ru.yoomoney.tech.moira.client.triggers.Trigger
 import java.io.File
 import java.nio.file.Files
 import javax.script.ScriptEngineManager

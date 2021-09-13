@@ -14,7 +14,7 @@ buildscript {
        mavenCentral()
     }
     dependencies {
-        classpath 'ru.yoomoney.gradle.plugins:moira-trigger-plugin:3.+'
+        classpath 'ru.yoomoney.gradle.plugins:moira-trigger-plugin:4.+'
     }
 }
 
@@ -51,8 +51,8 @@ moira {
 * Добавьте в качестве зависимости `moira-kotlin-dsl` отдельно для триггеров из проекта и из подключенного артефакта:
 ```groovy
 dependencies {
-    moiraFromDirCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
-    moiraFromArtifactCompile 'com.yandex.money.tech:moira-kotlin-dsl:1.0.3'
+    moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
+    moiraFromArtifactCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
 }  
 ```
 

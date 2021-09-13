@@ -1,6 +1,6 @@
 package ru.yoomoney.gradle.plugins.moira.trigger.collect
 
-import ru.yandex.money.moira.client.triggers.Trigger
+import ru.yoomoney.tech.moira.client.triggers.Trigger
 import java.io.File
 
 /**

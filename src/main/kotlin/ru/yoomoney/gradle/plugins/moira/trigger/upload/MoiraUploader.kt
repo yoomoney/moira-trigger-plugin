@@ -1,10 +1,10 @@
 package ru.yoomoney.gradle.plugins.moira.trigger.upload
 
 import org.gradle.api.logging.Logging
-import ru.yandex.money.moira.client.Moira
-import ru.yandex.money.moira.client.http.UserCredentials
-import ru.yandex.money.moira.client.settings.MoiraSettings
-import ru.yandex.money.moira.client.triggers.Trigger
+import ru.yoomoney.tech.moira.client.Moira
+import ru.yoomoney.tech.moira.client.http.UserCredentials
+import ru.yoomoney.tech.moira.client.settings.MoiraSettings
+import ru.yoomoney.tech.moira.client.triggers.Trigger
 
 /**
  * Uploader for Moira triggers. For configuration, see [MoiraSettings].
