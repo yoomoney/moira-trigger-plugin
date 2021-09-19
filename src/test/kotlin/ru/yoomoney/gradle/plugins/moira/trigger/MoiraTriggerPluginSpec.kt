@@ -11,7 +11,7 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
         buildFile.appendText("""
 
             dependencies {
-                moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:1.4.1-feature-github-SNAPSHOT'
+                moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
             }
 
         """.trimIndent())
@@ -27,7 +27,7 @@ class MoiraTriggerPluginSpec : AbstractPluginSpec() {
         buildFile.appendText("""
 
             dependencies {
-                moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:1.4.1-feature-github-SNAPSHOT'
+                moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
             }
 
         """.trimIndent())
