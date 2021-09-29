@@ -8,4 +8,7 @@ dependencies {
             'junit:junit:4.12',
             'org.eclipse.jetty:jetty-webapp:9.4.12.v20180830',
             'com.nhaarman:mockito-kotlin:1.6.0'
+
+    implementation 'ru.yoomoney.tech:moira-kotlin-client:2.0.0'
+    testImplementation 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
 }
