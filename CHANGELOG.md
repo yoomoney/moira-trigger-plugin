@@ -1,11 +1,11 @@
-### NEXT_VERSION_TYPE=MAJOR
-### NEXT_VERSION_DESCRIPTION_BEGIN
-* `moira-trigger-plugin` has moved to github 
+## [4.0.0](https://github.com/yoomoney/moira-trigger-plugin/pull/1) (29-09-2021)
+
+* `moira-trigger-plugin` has moved to github
 * Build with travis
 * Update version: ru.yoomoney.tech:moira-kotlin-client:2.0.0
 * Update version: ru.yoomoney.tech:moira-kotlin-dsl:2.0.0
 * **breaking changes** Packages `ru.yandex.money` have been renamed into `ru.yoomoney.tech`
-### NEXT_VERSION_DESCRIPTION_END
+
 ## [3.3.0]() (12-02-2021)
 
 * Переименование yamoney-kotlin-module-plugin в ru.yoomoney.gradle.plugins.kotlin-plugin
