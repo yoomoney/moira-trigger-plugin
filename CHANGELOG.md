@@ -1,3 +1,6 @@
+### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_DESCRIPTION_BEGIN
+### NEXT_VERSION_DESCRIPTION_END
 ## [4.0.0](https://github.com/yoomoney/moira-trigger-plugin/pull/1) (29-09-2021)
 
 * `moira-trigger-plugin` has moved to github
