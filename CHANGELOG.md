@@ -1,5 +1,6 @@
-### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_TYPE=PATCH
 ### NEXT_VERSION_DESCRIPTION_BEGIN
+Причина выпуска релиза - новая версия gradle-project-plugin
 ### NEXT_VERSION_DESCRIPTION_END
 ## [4.0.0](https://github.com/yoomoney/moira-trigger-plugin/pull/1) (29-09-2021)
 
