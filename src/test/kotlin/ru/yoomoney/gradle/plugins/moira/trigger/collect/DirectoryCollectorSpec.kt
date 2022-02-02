@@ -80,46 +80,10 @@ class DirectoryCollectorSpec {
     }
 
     @Test
-    fun `should return only supported files in root when recursive option is turned off`() {
-        // given
-        val delegate = TestCollector(directory.root)
-        val collector = DirectoryCollector(collector = delegate, recursive = false)
-
-        // when
-        val collected = collector.collect(directory.root)
-
-        // then
-        assertEquals(setOf("file1.supported", "file2.supported"), collected.toSet())
-    }
-
-    @Test
-    fun `should return supported files from root and dir1 and dir2 when recursive option is turned on and depth is 2`() {
-        // given
-        val delegate = TestCollector(directory.root)
-        val collector = DirectoryCollector(collector = delegate, maxDepth = 2)
-
-        // when
-        val collected = collector.collect(directory.root)
-
-        // then
-        assertEquals(
-            setOf(
-                "file1.supported",
-                "file2.supported",
-                "dir1${File.separator}file1.supported",
-                "dir1${File.separator}file2.supported",
-                "dir2${File.separator}file1.supported",
-                "dir2${File.separator}file2.supported"
-            ),
-            collected.toSet()
-        )
-    }
-
-    @Test
     fun `should return all supported files from root recursevely when recursive option is turned on and depthe is 3`() {
         // given
         val delegate = TestCollector(directory.root)
-        val collector = DirectoryCollector(collector = delegate, maxDepth = 3)
+        val collector = DirectoryCollector(collector = delegate)
 
         // when
         val collected = collector.collect(directory.root)
