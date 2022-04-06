@@ -1,5 +1,6 @@
 dependencies {
     api 'org.json:json:20190722',
+            'org.jetbrains.kotlin:kotlin-reflect',
             'org.jetbrains.kotlin:kotlin-compiler-embeddable',
             'org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable',
             'org.jetbrains.kotlin:kotlin-script-util'
@@ -7,7 +8,7 @@ dependencies {
     testImplementation gradleTestKit(),
             'junit:junit:4.12',
             'org.eclipse.jetty:jetty-webapp:9.4.12.v20180830',
-            'com.nhaarman:mockito-kotlin:1.6.0'
+            'org.mockito.kotlin:mockito-kotlin:4.0.0'
 
     implementation 'ru.yoomoney.tech:moira-kotlin-client:2.0.0'
     testImplementation 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'

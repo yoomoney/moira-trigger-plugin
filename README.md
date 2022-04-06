@@ -51,8 +51,8 @@ moira {
 * Добавьте в качестве зависимости `moira-kotlin-dsl` отдельно для триггеров из проекта и из подключенного артефакта:
 ```groovy
 dependencies {
-    moiraFromDirCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
-    moiraFromArtifactCompile 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
+    moiraFromDirCompileOnly 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
+    moiraFromArtifactCompileOnly 'ru.yoomoney.tech:moira-kotlin-dsl:2.0.0'
 }  
 ```
 

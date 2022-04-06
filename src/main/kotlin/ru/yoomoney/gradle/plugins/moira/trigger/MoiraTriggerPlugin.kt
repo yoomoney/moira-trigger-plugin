@@ -3,8 +3,9 @@ package ru.yoomoney.gradle.plugins.moira.trigger
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
+import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.plugins.JavaBasePlugin
-import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.Copy
 import java.io.File
 import java.nio.file.Paths
@@ -25,30 +26,30 @@ open class MoiraTriggerPlugin : Plugin<Project> {
         val artifactConfiguration = target.configureArtifactSourceSets()
 
         val triggersConfiguration = target.configurations
-                .maybeCreate("${ARTIFACT_TRIGGERS_CONFIGURATION_NAME}Compile")
+                .maybeCreate("${ARTIFACT_TRIGGERS_CONFIGURATION_NAME}CompileOnly")
 
         target.afterEvaluate { project ->
             artifactConfiguration.extendsFrom(triggersConfiguration)
-            project.createUploadMoiraTriggersTask(dirConfiguration, artifactConfiguration, extension)
-            project.createCollectMoiraTriggersTask(dirConfiguration, artifactConfiguration, extension)
+            project.createUploadMoiraTriggersTask(extension)
+            project.createCollectMoiraTriggersTask(extension)
             project.createExtractTriggersTask(triggersConfiguration)
         }
     }
 
     private fun Project.configureDirSourceSets(extension: MoiraTriggerExtension): Configuration {
-        val sourceSets = convention.getPlugin(JavaPluginConvention::class.java).sourceSets
+        val sourceSets = extensions.getByType(JavaPluginExtension::class.java).sourceSets
         val sourceSet = sourceSets.create(DIR_SOURCE_SET_NAME)
         sourceSet.java.srcDir(File(extension.dir))
 
-        return addKotlinDependencies("${DIR_SOURCE_SET_NAME}Compile")
+        return addKotlinDependencies("${DIR_SOURCE_SET_NAME}CompileOnly")
     }
 
     private fun Project.configureArtifactSourceSets(): Configuration {
-        val sourceSets = convention.getPlugin(JavaPluginConvention::class.java).sourceSets
+        val sourceSets = extensions.getByType(JavaPluginExtension::class.java).sourceSets
         val sourceSet = sourceSets.create(ARTIFACT_SOURCE_SET_NAME)
         sourceSet.java.srcDir(Paths.get(buildDir.toString(), TRIGGERS_FROM_ARTIFACT_DIR).toString())
 
-        return addKotlinDependencies("${ARTIFACT_SOURCE_SET_NAME}Compile")
+        return addKotlinDependencies("${ARTIFACT_SOURCE_SET_NAME}CompileOnly")
     }
 
     private fun Project.addKotlinDependencies(configurationName: String): Configuration {
@@ -63,22 +64,14 @@ open class MoiraTriggerPlugin : Plugin<Project> {
         return configurations.getByName(configurationName)
     }
 
-    private fun Project.createUploadMoiraTriggersTask(
-        dirConfiguration: Configuration,
-        artifactConfiguration: Configuration,
-        extension: MoiraTriggerExtension
-    ) {
+    private fun Project.createUploadMoiraTriggersTask(extension: MoiraTriggerExtension) {
         val task = tasks.create(UPLOAD_MOIRA_TRIGGERS_TASK_NAME, UploadMoiraTriggersTask::class.java)
         task.group = "other"
         task.description = "Upload Moira triggers"
         task.extension = extension
     }
 
-    private fun Project.createCollectMoiraTriggersTask(
-        dirConfiguration: Configuration,
-        artifactConfiguration: Configuration,
-        extension: MoiraTriggerExtension
-    ) {
+    private fun Project.createCollectMoiraTriggersTask(extension: MoiraTriggerExtension) {
         val task = tasks.create(COLLECT_MOIRA_TRIGGERS_TASK_NAME, CollectMoiraTriggersTask::class.java)
         task.group = "other"
         task.description = "Collect Moira triggers without uploading"
@@ -94,6 +87,7 @@ open class MoiraTriggerPlugin : Plugin<Project> {
 
         task.from(files)
         task.into(Paths.get(buildDir.toString(), TRIGGERS_FROM_ARTIFACT_DIR).toString())
+        task.duplicatesStrategy = DuplicatesStrategy.WARN
 
         tasks.getByName(UPLOAD_MOIRA_TRIGGERS_TASK_NAME).dependsOn(task)
         tasks.getByName(COLLECT_MOIRA_TRIGGERS_TASK_NAME).dependsOn(task)
