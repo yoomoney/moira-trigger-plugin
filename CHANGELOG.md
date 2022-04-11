@@ -1,5 +1,7 @@
-### NEXT_VERSION_TYPE=MAJOR|MINOR|PATCH
+### NEXT_VERSION_TYPE=MAJOR
 ### NEXT_VERSION_DESCRIPTION_BEGIN
+* **breaking changes** Обновление версии gradle до `7.4.1`;
+* **breaking changes** Конфигурации `compile` заменены на `compileOnly`;
 ### NEXT_VERSION_DESCRIPTION_END
 ## [4.1.0](https://github.com/yoomoney/moira-trigger-plugin/pull/3) (02-02-2022)
 

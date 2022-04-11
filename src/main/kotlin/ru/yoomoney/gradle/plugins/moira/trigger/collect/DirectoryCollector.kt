@@ -4,8 +4,6 @@ import java.io.File
 
 /**
  * Collects items from directory using recursive search.
- *
- * Note that [maxDepth] = 1 means that only root will be scanned. Depth is unlimited by default.
  */
 class DirectoryCollector<C>(
     private val collector: FilesCollector<C>
